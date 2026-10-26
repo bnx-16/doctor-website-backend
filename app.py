@@ -9,32 +9,35 @@ app = Flask(__name__)
 
 
 # =========================================================
-# CORS
-# =========================================================
-
-# =========================================================
-# CORS
+# CORS CONFIGURATION
 # =========================================================
 
 @app.after_request
 def add_cors_headers(response):
-
     origin = request.headers.get("Origin")
 
     allowed_origins = [
         "http://127.0.0.1:5500",
         "http://localhost:5500",
-        "https://doctor-website-frontend-d7w2c.onrender.com"
+        "https://doctor-website-frontend-d-7w2c.onrender.com"
     ]
 
     if origin in allowed_origins:
-
         response.headers["Access-Control-Allow-Origin"] = origin
         response.headers["Vary"] = "Origin"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-        response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = (
+            "Content-Type, Authorization"
+        )
+        response.headers["Access-Control-Allow-Methods"] = (
+            "GET, POST, PUT, DELETE, OPTIONS"
+        )
 
     return response
+
+
+@app.route("/api/appointments", methods=["OPTIONS"])
+def appointments_preflight():
+    return "", 204
 
 
 # =========================================================
