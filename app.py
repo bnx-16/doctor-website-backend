@@ -7,9 +7,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
-
 # =========================================================
 # CORS CONFIGURATION
+# =========================================================
+# CORS
 # =========================================================
 
 @app.after_request
@@ -20,6 +21,9 @@ def add_cors_headers(response):
         "http://127.0.0.1:5500",
         "http://localhost:5500",
         "https://doctor-website-frontend-d-7w2c.onrender.com"
+
+        "https://doctor-website-frontend-7w2c.onrender.com"
+
     ]
 
     if origin in allowed_origins:
